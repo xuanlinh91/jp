@@ -19,7 +19,7 @@ class Hiragana extends MY_Controller {
         $i = 0;
         foreach ($array as $key => $value) {
             $i++;
-            echo $value['Hira'] . '  ' . $value['PRON'] . '  ';
+            echo $value['CHAR'] . '  ' . $value['PRON'] . '  ';
             if ($i == 5) {
                 echo '<br>';
                 $i = 0;

@@ -54,65 +54,47 @@ jQuery(document).ready(function ($) {
                 } else {
                     var random = Math.floor(Math.random()*max + 1).toString();
                     if(checked.indexOf(random) !== -1){
-                        get_random(max);
+                        return get_random(max);
                     } else {
                         return random;
                     }
                 }
             }
 
-            //function get_random(max){
-            //    var random = Math.floor(Math.random()*max + 1);
-            //    console.log(checked);
-            //    console.log(random);
-            //    console.log(checked.indexOf(random));
-            //    if(checked.indexOf(random) !== -1){
-            //        return get_random(max);
-            //    } else {
-            //        return random;
-            //    }
-            //}
-
             function get_random_button(max, check_button){
-                var random = Math.floor(Math.random()*max + 1);
-
-                if (check_button.length > 0) {
-                    if(check_button.indexOf(random+1) !== -1){
-                        get_random_button(max, check_button);
-                    } else {
-                        return random;
-                    }
+                var random = Math.floor(Math.random()*max + 1).toString();
+                if(check_button.indexOf(random) !== -1){
+                    return get_random_button(max, check_button);
                 } else {
                     return random;
                 }
+
             }
 
             function refresh_chonchu(){
-                console.log(checked);
                 if (checked.length == hiragana.length) {
                     console.log('ket thuc');
                     return false;
                 }
                 $('.hiragana-chonchu-click').removeClass( "btn-danger" ).addClass( "btn-info");
                 var random_item = get_random(hiragana.length, checked)-1;
-                var random_button = Math.floor(Math.random() * 6 + 1);
-                console.log(random_item);
-                $('.center-character').html(hiragana[random_item].Hira);
-                $('.center-character').attr('id_character', hiragana[random_item].ID);
+                var random_button = Math.floor(Math.random() * 5 + 1);
+                var check_button = new Array();
+                check_button.push(hiragana[random_item].ID.toString());
+                $('.center-character').html(hiragana[random_item].CHAR);
+                $('.center-character').attr('id_character', hiragana[random_item].ID.toString());
                 var id_button = 'btn_'+random_button;
-                $('#'+id_button).attr('value', hiragana[random_item].PRON);
+                $('#'+id_button).attr('value', hiragana[random_item].PRON.toString());
                 $('.hiragana-chonchu-click').each(function(){
-                    var check_button = new Array(random_button);
-                    var rand = get_random_button(6, check_button);
-                    if (rand != null) {
-                        check_button.push(rand);
-                    }
-
-                    if($(this).attr('id').localeCompare(id_button) !== 0){
-                        $(this).attr('value', hiragana[rand].PRON);
-                        $(this).attr('id_character', hiragana[rand].ID);
+                    if($(this).attr('id').toString() !== id_button.toString()){
+                        var rand = get_random_button(hiragana.length, check_button);
+                        if (rand != null && typeof(rand) != 'undefined') {
+                            check_button.push(rand.toString());
+                        }
+                        $(this).attr('value', hiragana[rand-1].PRON.toString());
+                        $(this).attr('id_character', hiragana[rand-1].ID.toString());
                     } else {
-                        $(this).attr('id_character', hiragana[random_item].ID);
+                        $(this).attr('id_character', hiragana[random_item].ID.toString());
                     }
                 })
             }

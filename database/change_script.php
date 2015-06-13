@@ -1,3 +1,13 @@
+CREATE TABLE `hiragana` (
+`ID` INT NOT NULL AUTO_INCREMENT,
+`HIRA` VARCHAR(50) NULL,
+`PRON` VARCHAR(50) NULL,
+PRIMARY KEY (`ID`)
+)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
+;
+
 INSERT INTO `jp`.`hiragana` (`Hira`, `PRON`) VALUES ('あ', 'a');
 INSERT INTO `jp`.`hiragana` (`Hira`, `PRON`) VALUES ('い', 'i');
 INSERT INTO `jp`.`hiragana` (`Hira`, `PRON`) VALUES ('う', 'u');
@@ -51,8 +61,6 @@ INSERT INTO `jp`.`hiragana` (`Hira`, `PRON`) VALUES ('れ', 're');
 INSERT INTO `jp`.`hiragana` (`Hira`, `PRON`) VALUES ('ろ', 'ro');
 
 INSERT INTO `jp`.`hiragana` (`Hira`, `PRON`) VALUES ('わ', 'wa');
-INSERT INTO `jp`.`hiragana` (`Hira`, `PRON`) VALUES ('ゐ', 'wi');
-INSERT INTO `jp`.`hiragana` (`Hira`, `PRON`) VALUES ('ゑ', 'we');
 INSERT INTO `jp`.`hiragana` (`Hira`, `PRON`) VALUES ('を', 'wo');
 INSERT INTO `jp`.`hiragana` (`Hira`, `PRON`) VALUES ('ん', 'n');
 
@@ -129,4 +137,5 @@ INSERT INTO `jp`.`hiragana` (`Hira`, `PRON`) VALUES ('ぴゃ', 'pya');
 INSERT INTO `jp`.`hiragana` (`Hira`, `PRON`) VALUES ('ぴゅ', 'pyu');
 INSERT INTO `jp`.`hiragana` (`Hira`, `PRON`) VALUES ('ぴょ', 'pyo');
 
-
+ALTER TABLE `hiragana`
+CHANGE COLUMN `HIRA` `CHAR` VARCHAR(50) NULL DEFAULT NULL AFTER `ID`;
