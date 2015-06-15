@@ -1,4 +1,4 @@
-<?php $this->load->view("header"); ?>
+<?php $this->load->view("share/header"); ?>
     <div class=".container-fluid">
         <div class="container">
             <?php echo $content; ?>
@@ -12,4 +12,4 @@
 <!--            </div>-->
 <!--        </div>-->
 <!--    </div>-->
-<?php $this->load->view("footer"); ?>
+<?php $this->load->view("share/footer"); ?>

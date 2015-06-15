@@ -84,3 +84,9 @@ define('EXIT_USER_INPUT', 7); // invalid user input
 define('EXIT_DATABASE', 8); // database error
 define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+
+define('HIRAGANA', 1); // highest automatically-assigned error code
+define('KATAKANA', 2); // highest automatically-assigned error code
+define('KANJI', 3); // highest automatically-assigned error code
+define('DEFAULT_NUMBER_CHARACTER', 10); // highest automatically-assigned error code
+

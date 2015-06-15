@@ -27,8 +27,25 @@ class Hiragana extends MY_Controller {
         }
     }
     public function chonchu(){
-        $hiragana = $this->t_hiragana->get_all_data();
-        $this->data['hiragana'] = json_encode($hiragana);
+        $input = $this->input->post();
+        var_dump($input);
+        exit;
+        switch ($input['type']) {
+            case HIRAGANA:
+                $char = $this->t_hiragana->get_all_data();
+                break;
+            case KATAKANA:
+                $char = $this->t_katakana->get_all_data();
+                break;
+            case KANJI:
+                $char = $this->t_hiragana->get_all_data();
+                break;
+            default:
+                $char = $this->t_hiragana->get_all_data();
+                break;
+        }
+
+        $this->data['hiragana'] = json_encode($char);
         $this->view('default', 'hiragana_game/chonchu', $this->data);
     }
 }

@@ -32,21 +32,43 @@ jQuery(document).ready(function ($) {
     });
 
     if (typeof page != 'undefined') {
-        if (page != '' && page == 'hiragana-chonchu') {
+        if (page != '' && page == 'chonchu') {
 
             var checked = new Array();
+            var result = 0;
             refresh_chonchu(checked);
-            var dapan = $('.hiragana-chonchu-click').click(function() {
+            var dapan = $('.chonchu-click').click(function() {
                 var id = $(this).attr('id_character');
                 var id_dapan = $('.center-character').attr('id_character');
                 if (id == id_dapan) {
                     checked.push(id);
+                    result++;
                     refresh_chonchu();
                 } else {
                     $(this).removeClass( "btn-info" ).addClass( "btn-danger");
                 }
             });
 
+            $('#chonchu-get-result').click(function(){
+                var obj = {result: result, total: char.length};
+                var request = $.ajax({
+                    type: "POST",
+                    url: site_url + "/game/chonchu_result_cal",
+                    data: obj,
+                    dataType: "json"
+                    //success: function (data) {
+                    //    alert('linh');
+                    //    //if (typeof data != 'undefined') {
+                    //    //    console.log(data);
+                    //    //} else {
+                    //    //    console.log(data);
+                    //    //}
+                    //}
+                });
+                request.done(function(msg){
+                    alert(msg);
+                })
+            })
             function get_random(max){
                 if(checked.length == max){
                     console.log(checked);
@@ -72,29 +94,30 @@ jQuery(document).ready(function ($) {
             }
 
             function refresh_chonchu(){
-                if (checked.length == hiragana.length) {
-                    console.log('ket thuc');
+                if (checked.length == char.length) {
+                    $('.game').hide();
+                    $('.result').removeClass('hidden');
                     return false;
                 }
-                $('.hiragana-chonchu-click').removeClass( "btn-danger" ).addClass( "btn-info");
-                var random_item = get_random(hiragana.length, checked)-1;
+                $('.chonchu-click').removeClass( "btn-danger" ).addClass( "btn-info");
+                var random_item = get_random(char.length, checked)-1;
                 var random_button = Math.floor(Math.random() * 5 + 1);
                 var check_button = new Array();
-                check_button.push(hiragana[random_item].ID.toString());
-                $('.center-character').html(hiragana[random_item].CHAR);
-                $('.center-character').attr('id_character', hiragana[random_item].ID.toString());
+                check_button.push(char[random_item].ID.toString());
+                $('.center-character').html(char[random_item].CHAR);
+                $('.center-character').attr('id_character', char[random_item].ID.toString());
                 var id_button = 'btn_'+random_button;
-                $('#'+id_button).attr('value', hiragana[random_item].PRON.toString());
-                $('.hiragana-chonchu-click').each(function(){
+                $('#'+id_button).attr('value', char[random_item].PRON.toString());
+                $('.chonchu-click').each(function(){
                     if($(this).attr('id').toString() !== id_button.toString()){
-                        var rand = get_random_button(hiragana.length, check_button);
+                        var rand = get_random_button(char.length, check_button);
                         if (rand != null && typeof(rand) != 'undefined') {
                             check_button.push(rand.toString());
                         }
-                        $(this).attr('value', hiragana[rand-1].PRON.toString());
-                        $(this).attr('id_character', hiragana[rand-1].ID.toString());
+                        $(this).attr('value', char[rand-1].PRON.toString());
+                        $(this).attr('id_character', char[rand-1].ID.toString());
                     } else {
-                        $(this).attr('id_character', hiragana[random_item].ID.toString());
+                        $(this).attr('id_character', char[random_item].ID.toString());
                     }
                 })
             }
