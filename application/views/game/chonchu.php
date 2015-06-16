@@ -1,6 +1,7 @@
 <script type="text/javascript">
     var char = <?php echo $char;?>;
     var page = 'chonchu';
+    var timeout = <?php echo $time_out;?>;
 </script>
 <div class="row">
     <div class="content well-lg">
@@ -8,6 +9,7 @@
             <?php echo form_open('', array('class' => 'form-horizontal', 'novalidate' => 'novalidate')); ?>
             <div class="center-character"></div>
             <table class="table">
+
                 <tr>
                     <td><?php
                         echo form_input(array('type' => 'button', 'id' => 'btn_1', 'name' => 'btn-1', 'class' => 'chonchu-click form-control btn btn-info'));
@@ -26,6 +28,12 @@
                         ?></td>
                 </tr>
             </table>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="100"
+                     aria-valuemin="0" aria-valuemax="100" style="width:100%">
+
+                </div>
+            </div>
         </div>
         <div class="result text-center hidden">
             <div class="form-group col-lg-12">

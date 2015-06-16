@@ -1,6 +1,5 @@
 jQuery(document).ready(function ($) {
 
-    /* Get setting error display */
     $(function() {
         $('nav#menu').mmenu({
             extensions	: [ 'effect-slide-menu', 'pageshadow' ],
@@ -33,9 +32,11 @@ jQuery(document).ready(function ($) {
 
     if (typeof page != 'undefined') {
         if (page != '' && page == 'chonchu') {
-
+            timeout = timeout * 1000;
+            var count = timeout;
             var checked = new Array();
             var result = 0;
+            var counter;
             refresh_chonchu(checked);
             var dapan = $('.chonchu-click').click(function() {
                 var id = $(this).attr('id_character');
@@ -56,19 +57,16 @@ jQuery(document).ready(function ($) {
                     url: site_url + "/game/chonchu_result_cal",
                     data: obj,
                     dataType: "json"
-                    //success: function (data) {
-                    //    alert('linh');
-                    //    //if (typeof data != 'undefined') {
-                    //    //    console.log(data);
-                    //    //} else {
-                    //    //    console.log(data);
-                    //    //}
-                    //}
                 });
                 request.done(function(msg){
-                    alert(msg);
+                    if (typeof(msg) != 'undefined') {
+                        $('.result').html(msg);
+                    } else {
+                        console.log('failed!');
+                    }
                 })
-            })
+            });
+
             function get_random(max){
                 if(checked.length == max){
                     console.log(checked);
@@ -94,6 +92,10 @@ jQuery(document).ready(function ($) {
             }
 
             function refresh_chonchu(){
+                count = timeout;
+                $('.progress-bar').css('width', '100%');
+                $('.progress-bar').attr('aria-valuenow', 100);
+                counter = setInterval(timer, 1000);
                 if (checked.length == char.length) {
                     $('.game').hide();
                     $('.result').removeClass('hidden');
@@ -122,6 +124,20 @@ jQuery(document).ready(function ($) {
                 })
             }
 
+        }
+    }
+
+    function timer() {
+        if (count <= 0) {
+            count = timeout;
+            clearInterval(counter);
+            refresh_chonchu();
+        } else {
+            count = count - 1000;
+            var percent = (count/timeout)*100;
+            percent.toFixed(2);
+            $('.progress-bar').css('width', percent+'%');
+            $('.progress-bar').attr('aria-valuenow', percent);
         }
     }
 

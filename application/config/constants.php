@@ -89,4 +89,7 @@ define('HIRAGANA', 1); // highest automatically-assigned error code
 define('KATAKANA', 2); // highest automatically-assigned error code
 define('KANJI', 3); // highest automatically-assigned error code
 define('DEFAULT_NUMBER_CHARACTER', 10); // highest automatically-assigned error code
+define('CHON_CHU_LEVEL_EASY', 10); // highest automatically-assigned error code
+define('CHON_CHU_LEVEL_NORMAL', 6); // highest automatically-assigned error code
+define('CHON_CHU_LEVEL_HARD', 4); // highest automatically-assigned error code
 

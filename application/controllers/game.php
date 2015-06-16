@@ -39,6 +39,7 @@ class Game extends MY_Controller {
         }
 
         $this->data['char'] = json_encode($char);
+        $this->data['time_out'] = $input['level'];
         $this->view('default', 'game/chonchu', $this->data);
     }
 
@@ -47,7 +48,7 @@ class Game extends MY_Controller {
             $result = $this->input->post('result');
             $total = $this->input->post('total');
         }
-        echo 'THẬT KHÔNG THỂ TIN NỔI!!!!!<br>Bạn được '. $result.'/'. $total;
+        echo json_encode('<h1>THẬT KHÔNG THỂ TIN NỔI!!!!!</h1><br><h2>Bạn được <span class="text-danger">'. $result.'/'. $total.'</span></h2>');
     }
 
 }

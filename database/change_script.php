@@ -264,9 +264,9 @@ INSERT INTO `jp`.`katakana` (`CHAR`, `PRON`) VALUES ('ギョ', 'gyo');
 INSERT INTO `jp`.`katakana` (`CHAR`, `PRON`) VALUES ('ジャ', 'ja');
 
 INSERT INTO `jp`.`katakana` (`CHAR`, `PRON`) VALUES ('ジュ', 'ju');
-INSERT INTO `jp`.`katakana` (`CHAR`, `PRON`) VALUES ('じょ', 'jo');
-INSERT INTO `jp`.`katakana` (`CHAR`, `PRON`) VALUES ('ぢゃ', 'ja');
-INSERT INTO `jp`.`katakana` (`CHAR`, `PRON`) VALUES ('ぢゅ', 'ju');
+INSERT INTO `jp`.`katakana` (`CHAR`, `PRON`) VALUES ('ジョ', 'jo');
+INSERT INTO `jp`.`katakana` (`CHAR`, `PRON`) VALUES ('ヂャ', 'ja');
+INSERT INTO `jp`.`katakana` (`CHAR`, `PRON`) VALUES ('ヂュ', 'ju');
 INSERT INTO `jp`.`katakana` (`CHAR`, `PRON`) VALUES ('ヂョ', 'jo');
 
 INSERT INTO `jp`.`katakana` (`CHAR`, `PRON`) VALUES ('ビャ', 'bya');
