@@ -9,6 +9,7 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="/jp/js/bootstrap.js"></script>
+    <script src="/jp/js/lib.js"></script>
     <script src="/jp/js/main.js"></script>
     <script type="text/javascript" src="/jp/js/jquery.mmenu.min.all.js"></script>
     <?php echo link_tag('favicon.png', 'shortcut icon', 'image/ico'); ?>

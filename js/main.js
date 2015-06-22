@@ -37,16 +37,20 @@ jQuery(document).ready(function ($) {
             var checked = new Array();
             var result = 0;
             var counter;
+            $('.total').html(char.length);
+            $('.true').html(result);
             refresh_chonchu(checked);
             var dapan = $('.chonchu-click').click(function() {
                 var id = $(this).attr('id_character');
                 var id_dapan = $('.center-character').attr('id_character');
                 if (id == id_dapan) {
-                    checked.push(id);
+                    checked.push(id.toString());
                     result++;
+                    $('.true').html(result);
                     refresh_chonchu();
                 } else {
-                    $(this).removeClass( "btn-info" ).addClass( "btn-danger");
+                    checked.push(id.toString());
+                    refresh_chonchu();
                 }
             });
 
@@ -73,7 +77,9 @@ jQuery(document).ready(function ($) {
                     return false;
                 } else {
                     var random = Math.floor(Math.random()*max + 1).toString();
-                    if(checked.indexOf(random) !== -1){
+                    console.log(checked.indexOf(random));
+                    if(checked.indexOf(random) != -1){
+                        console.log('die');
                         return get_random(max);
                     } else {
                         return random;
@@ -92,10 +98,14 @@ jQuery(document).ready(function ($) {
             }
 
             function refresh_chonchu(){
+                clearInterval(counter);
                 count = timeout;
-                $('.progress-bar').css('width', '100%');
-                $('.progress-bar').attr('aria-valuenow', 100);
-                counter = setInterval(timer, 1000);
+                var foo = document.querySelector('.progress-bar');
+                skipTransition(foo, function(){
+                    foo.style.width = '100%';
+                    foo.setAttribute('aria-valuenow', 10);
+                });
+                counter = setInterval(timer, 600);
                 if (checked.length == char.length) {
                     $('.game').hide();
                     $('.result').removeClass('hidden');
@@ -103,6 +113,7 @@ jQuery(document).ready(function ($) {
                 }
                 $('.chonchu-click').removeClass( "btn-danger" ).addClass( "btn-info");
                 var random_item = get_random(char.length, checked)-1;
+                console.log(checked);
                 var random_button = Math.floor(Math.random() * 5 + 1);
                 var check_button = new Array();
                 check_button.push(char[random_item].ID.toString());
@@ -128,18 +139,18 @@ jQuery(document).ready(function ($) {
     }
 
     function timer() {
-        if (count <= 0) {
+        count = count - 600;
+        if (count <= -600) {
             count = timeout;
-            clearInterval(counter);
             refresh_chonchu();
         } else {
-            count = count - 1000;
             var percent = (count/timeout)*100;
             percent.toFixed(2);
             $('.progress-bar').css('width', percent+'%');
             $('.progress-bar').attr('aria-valuenow', percent);
         }
     }
+
 
 });
 

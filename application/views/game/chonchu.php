@@ -9,7 +9,6 @@
             <?php echo form_open('', array('class' => 'form-horizontal', 'novalidate' => 'novalidate')); ?>
             <div class="center-character"></div>
             <table class="table">
-
                 <tr>
                     <td><?php
                         echo form_input(array('type' => 'button', 'id' => 'btn_1', 'name' => 'btn-1', 'class' => 'chonchu-click form-control btn btn-info'));
@@ -29,10 +28,14 @@
                 </tr>
             </table>
             <div class="progress">
-                <div class="progress-bar" role="progressbar" aria-valuenow="100"
-                     aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                <div class="progress-bar progress-bar-warning progress-bar-striped active"  role="progressbar"
+                     aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
 
                 </div>
+            </div>
+            <div class="result">
+                <div class="total"></div>
+                <div class="true"></div>
             </div>
         </div>
         <div class="result text-center hidden">
