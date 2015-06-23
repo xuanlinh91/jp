@@ -105,7 +105,7 @@ jQuery(document).ready(function ($) {
                     foo.style.width = '100%';
                     foo.setAttribute('aria-valuenow', 10);
                 });
-                counter = setInterval(timer, 600);
+                counter = setInterval(timer, 100);
                 if (checked.length == char.length) {
                     $('.game').hide();
                     $('.result').removeClass('hidden');
@@ -139,9 +139,10 @@ jQuery(document).ready(function ($) {
     }
 
     function timer() {
-        count = count - 600;
-        if (count <= -600) {
+        count = count - 100;
+        if (count <= - 100) {
             count = timeout;
+            setTimeout(10000);
             refresh_chonchu();
         } else {
             var percent = (count/timeout)*100;
